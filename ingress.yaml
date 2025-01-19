@@ -8,9 +8,12 @@ metadata:
   annotations:
     spec.ingressClassName: traefik
 spec:
+  ingressClassName: tailscale
+  tls:
+    - hosts:
+        - monit
   rules:
-    - host: monit.sysgwan.xyz
-      http:
+    - http:
         paths:
           - pathType: Prefix
             path: /
