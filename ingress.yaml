@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: monit-ingress
+  namespace: monitoring
+  labels:
+    name: monit
+  annotations:
+    spec.ingressClassName: traefik
+spec:
+  rules:
+    - host: monit.sysgwan.xyz
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: monitoring-grafana
+                port:
+                  number: 80
